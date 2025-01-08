@@ -6,7 +6,6 @@ import {
   UtensilsCrossed,
   Users,
   History,
-  Calendar,
   Star,
   Settings,
   BookOpenIcon,

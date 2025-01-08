@@ -1,7 +1,5 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import DashRouter from './components/dashboard/DashRouter'
-import { Form } from './components/ui/form'
-import Home from './Homepage/Home/Home'
 import { Table } from './components/ui/table'
 import Dashboard from './components/dashboard/Dashboard'
 import HameUpdate from './Homepage/Pages/AllPages'
@@ -50,7 +48,6 @@ export const router = createBrowserRouter([
     path: '/dashboard',
     element: <DashRouter />,
     children: [
-      { path: 'Form', element: <Form /> },
       { path: 'Table', element: <Table /> },
 
       // 

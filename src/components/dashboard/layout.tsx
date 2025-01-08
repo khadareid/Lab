@@ -1,7 +1,7 @@
 import  AppHeader  from "@/components/dashboard/Header"
-import { AppSidebar } from "@/components/dashboard/Sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
-import {createBrowserRouter ,Outlet} from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
+import AppSidebar from "./Sidebar"
 
 export default function Page() {
   return (

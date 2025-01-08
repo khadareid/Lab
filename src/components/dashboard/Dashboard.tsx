@@ -1,6 +1,5 @@
 'use client'
 
-import React from "react"
 import { Line } from "react-chartjs-2"
 import {
   Chart as ChartJS,
@@ -12,8 +11,8 @@ import {
   Tooltip,
   Legend
 } from "chart.js"
-import { FaBook, FaUser, FaDollarSign, FaCalendarAlt, FaChartLine } from "react-icons/fa"
-import { Search, Bell, ChevronRight, Play, Clock, MoreVertical } from 'lucide-react'
+import { FaBook, FaUser,  FaCalendarAlt, FaChartLine } from "react-icons/fa"
+import { Search, Bell, ChevronRight,  Clock } from 'lucide-react'
 
 // Register ChartJS components
 ChartJS.register(
