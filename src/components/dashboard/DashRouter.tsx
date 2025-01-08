@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import AppSidebar from "./Sidebar";
+
 const DashRouter = () => {
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const userInfo = localStorage.getItem("userInfo");
@@ -16,7 +18,7 @@ const DashRouter = () => {
       if (Role === "USER") {
         navigate("/");
       } else if (Role === "REGISTER") {
-        navigate("/register/main");
+        navigate("/register/Overview");
       }
     }
   }, [navigate]);
