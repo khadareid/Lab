@@ -79,7 +79,7 @@ export default function AllUser() {
             </tr>
           </thead>
           <tbody>
-            {Alluserss.users?.result?.map((user: any, index: any) => (
+            {(Alluserss.users as any)?.result?.map((user: any, index: any) => (
               <tr key={user.id} className={index % 2 === 0 ? "bg-gray-50" : ""}>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">

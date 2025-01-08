@@ -1,7 +1,6 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import DashRouter from './components/dashboard/DashRouter';
 import Dashboard from './components/dashboard/Dashboard';
-import HameUpdate from './Homepage/Pages/AllPages';
 import AllUser from './components/pages/AllUser/AllUser';
 import Transaction from './components/pages/Transaction/Transaction';
 import StaffEmplayee from './components/pages/StaffEmplayee/StaffEmplayee';

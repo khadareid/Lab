@@ -26,8 +26,8 @@ export default function Login() {
 
   useEffect(() => {
     if (loginState.isSuccess && loginState.userInfo) {
-      const { name, email, token, role } = loginState.userInfo;
-      dispatch(setUser({ name, email, token, role }));
+      const { name, email,  role } = loginState.userInfo;
+      dispatch(setUser({ name, email,  role }));
       toast.success("Login Successful", { id: toastId });
       navigate("/dashboard/Overview"); 
     }

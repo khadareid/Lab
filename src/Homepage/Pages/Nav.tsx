@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Phone, User, Menu, X } from 'lucide-react';
 
 const SiteHeader = () => {
   const [scrolling, setScrolling] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  // const [ setShowLoginModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -134,7 +134,6 @@ const SiteHeader = () => {
 
               {/* Login Button */}
               <button
-                onClick={() => setShowLoginModal(true)}
                 className="bg-green-500 hover:bg-green-600 text-white rounded-full px-4 py-2 flex items-center transition-colors"
               >
                 <User className="mr-2 h-4 w-4" />

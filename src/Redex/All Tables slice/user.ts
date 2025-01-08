@@ -124,7 +124,7 @@ export const deleteUser = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-      const res = await axios.delete(`${baseUrl}/users/${id}`, {
+       await axios.delete(`${baseUrl}/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
