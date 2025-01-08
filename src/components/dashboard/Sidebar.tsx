@@ -31,7 +31,6 @@ const sidebarConfig = [
       },
     ],
   },
-
   {
     name: "Library",
     items: [
@@ -128,7 +127,6 @@ const sidebarConfig = [
         link: "/dashboard/OrderHistory",
         roles: ["ALL"],
       },
-      
       {
         name: "Reviews",
         icon: <Star className="h-5 w-5 text-gray-500" />,
@@ -146,7 +144,16 @@ const sidebarConfig = [
 ];
 
 export default function AppSidebar() {
-  const userRole = "ADMIN"; // Replace with logic to fetch the actual user role dynamically
+  const userRole =
+    JSON.parse(localStorage.getItem("userInfo") || "{}")?.Role || "";
+  const userToken = localStorage.getItem("token");
+
+  // If the user doesn't have a token, they are redirected
+  if (!userToken) {
+    // Handle redirection logic here, for example:
+    window.location.href = "/login";
+    return null; // return nothing if the user is not authenticated
+  }
 
   return (
     <div className="bg-[#f0f9f0] w-[250px] h-screen flex flex-col border-r">
@@ -157,7 +164,7 @@ export default function AppSidebar() {
         </div>
         <div className="flex flex-col">
           <span className="text-sm font-semibold text-gray-800">
-            Hello Maciej
+            Hello {userRole}
           </span>
           <span className="text-xs text-gray-500">Your plan: Free</span>
         </div>
