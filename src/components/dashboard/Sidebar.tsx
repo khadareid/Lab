@@ -144,16 +144,7 @@ const sidebarConfig = [
 ];
 
 export default function AppSidebar() {
-  const userRole =
-    JSON.parse(localStorage.getItem("userInfo") || "{}")?.Role || "";
-  const userToken = localStorage.getItem("token");
 
-  // If the user doesn't have a token, they are redirected
-  if (!userToken) {
-    // Handle redirection logic here, for example:
-    window.location.href = "/login";
-    return null; // return nothing if the user is not authenticated
-  }
 
   return (
     <div className="bg-[#f0f9f0] w-[250px] h-screen flex flex-col border-r">
@@ -164,7 +155,7 @@ export default function AppSidebar() {
         </div>
         <div className="flex flex-col">
           <span className="text-sm font-semibold text-gray-800">
-            Hello {userRole}
+         
           </span>
           <span className="text-xs text-gray-500">Your plan: Free</span>
         </div>
@@ -184,8 +175,7 @@ export default function AppSidebar() {
             <div>
               {group.items.map(
                 (item, idx) =>
-                  (item.roles.includes("ALL") ||
-                    item.roles.includes(userRole)) && (
+                 
                     <Link key={idx} to={item.link}>
                       <div className="flex items-center gap-4 py-2 px-3 rounded-md text-gray-700 hover:bg-gray-100">
                         {item.icon}
@@ -193,7 +183,7 @@ export default function AppSidebar() {
                       </div>
                     </Link>
                   )
-              )}
+                }
             </div>
           </div>
         ))}

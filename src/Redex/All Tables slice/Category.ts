@@ -33,7 +33,7 @@ export const createCategory = createAsyncThunk(
   async (categoryData: Partial<Category>, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-      const res = await axios.post(`${baseUrl}/Category`, categoryData, {
+      const res = await axios.post(`${baseUrl}/Category/Create`, categoryData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -54,7 +54,7 @@ export const fetchCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-      const res = await axios.get(`${baseUrl}/Category`, {
+      const res = await axios.get(`${baseUrl}/Category/All`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,7 +75,7 @@ export const updateCategory = createAsyncThunk(
   async (categoryData: Category, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-      const res = await axios.put(`${baseUrl}/Category/${categoryData.id}`, categoryData, {
+      const res = await axios.put(`${baseUrl}/Category/edit/${categoryData.id}`, categoryData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -96,7 +96,7 @@ export const deleteCategory = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-     await axios.delete(`${baseUrl}/Category/${id}`, {
+     await axios.delete(`${baseUrl}/Category/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -6,7 +6,6 @@ const initialState = localStorage.getItem('userInfo')
       name: '',
       role: '',
       email: '',
-      image: '',
       token: '',
     };
 
@@ -28,7 +27,6 @@ const userInfoSlice = createSlice({
       localStorage.removeItem('userInfo');
       state.name = '';
       state.role = '';
-      state.email = '';
       state.token = '';
     },
   },
