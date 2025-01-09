@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import {
   Search,
@@ -16,8 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/Redex/Store";
-import { fetchCategories } from "@/Redex/All Tables slice/Category";
-
+import { fetchCategories, deleteCategory } from "@/Redex/All Tables slice/Category";
+import toast from "react-hot-toast";
 
 enum CategoryType {
   NOVALS = "NOVALS",
@@ -46,8 +44,6 @@ export default function CategoryManagement() {
     }
   );
 
-
-
   const getCategoryIcon = (type: CategoryType) => {
     switch (type) {
       case CategoryType.NOVALS:
@@ -65,15 +61,28 @@ export default function CategoryManagement() {
     }
   };
 
+  const handleDelete = async (categoryId: number, categoryName: string) => {
+    const confirmDelete = window.confirm(`Are you sure you want to delete the category: ${categoryName}?`);
+
+    if (confirmDelete) {
+      toast.loading("Deleting...", { id: "deleteCategoryToast" });
+
+      try {
+        await dispatch(deleteCategory(categoryId)).unwrap();
+        toast.success(`Category "${categoryName}" deleted successfully!`, { id: "deleteCategoryToast" });
+      } catch (error) {
+        toast.error("Failed to delete category", { id: "deleteCategoryToast" });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <span className="text-xl font-bold text-green-600">
-              Category Management
-            </span>
+            <span className="text-xl font-bold text-green-600">Category Management</span>
             <div className="w-full sm:w-96 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
@@ -92,15 +101,7 @@ export default function CategoryManagement() {
       <nav className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-4 sm:space-x-8 overflow-x-auto py-2">
-            {[
-              "All Categories",
-              "Novels",
-              "Non-Fiction",
-              "Science",
-              "History",
-              "Technology",
-              "Other",
-            ].map((item) => (
+            {["All Categories", "Novels", "Non-Fiction", "Science", "History", "Technology", "Other"].map((item) => (
               <button
                 key={item}
                 onClick={() => setActiveFilter(item)}
@@ -142,10 +143,7 @@ export default function CategoryManagement() {
           {/* Table Body */}
           <div className="divide-y divide-gray-200">
             {filteredCategories?.map((category: any) => (
-              <div
-                key={category.id}
-                className="grid grid-cols-1 sm:grid-cols-6 gap-4 px-6 py-4"
-              >
+              <div key={category.id} className="grid grid-cols-1 sm:grid-cols-6 gap-4 px-6 py-4">
                 <div className="flex items-center">
                   {getCategoryIcon(category.type)}
                   <span className="font-medium">{category.name}</span>
@@ -184,7 +182,7 @@ export default function CategoryManagement() {
                     </button>
                   </Link>
                   <button
-                    onClick={() => alert(`Deleting category ${category.name}`)}
+                    onClick={() => handleDelete}
                     className="flex items-center px-1 py-1 bg-red-600 text-white rounded-sm hover:bg-red-700 text-xs"
                   >
                     <Trash2 className="h-3 w-3 mr-1" />

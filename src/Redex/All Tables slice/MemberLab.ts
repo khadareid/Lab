@@ -39,16 +39,16 @@ export const createMember = createAsyncThunk(
   async (memberData: Partial<Member>, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-      const res = await axios.post(`${baseUrl}/members`, memberData, {
+      const res = await axios.post(`${baseUrl}/Member/Create`, memberData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       return res.data;
     } catch (error) {
-      if (error instanceof AxiosError)
+      if (error instanceof AxiosError) {
         return rejectWithValue(error.response?.data.message || errorMsg);
-
+      }
       return rejectWithValue(errorMsg);
     }
   }
@@ -60,7 +60,7 @@ export const fetchMembers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = JSON.parse(localStorage.getItem('userInfo')!).token?.token;
-      const res = await axios.get(`${baseUrl}/members`, {
+      const res = await axios.get(`${baseUrl}/Member/All`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

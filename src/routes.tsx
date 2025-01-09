@@ -15,6 +15,9 @@ import CreateUser from './components/pages/AllUser/CreateUser';
 import Login from './components/pages/AllUser/Login';
 import NotFound from './Homepage/Pages/NotFound';
 import Page from './Homepage/Pages/AllPages';
+import CreateCtgy from './components/pages/Category/CreateCtgy';
+import Upadate from './components/pages/Category/Upadate';
+import CrMembar from './components/pages/MemberLab/CrMembar';
 
 const Router = () => {
   return (
@@ -55,11 +58,25 @@ export const router = createBrowserRouter([
       { path: 'sales', element: <Sales /> },
       { path: 'orders', element: <Oder /> },
       { path: 'MemberLab', element: <MemberLab /> },
-      { path: 'category', element: <Category /> },
+     
       { path: 'BorrowRecords', element: <BorrowRecord /> },
       { path: 'books', element: <Book /> },
       { path: 'library', element: <Library /> },
       { path: 'CreateUser', element: <CreateUser /> },
+      { path: 'CreateCtgy', element: <CreateCtgy /> },
+
+      { path: 'CrMembar', element: <CrMembar /> },
+
+      
+
+      {
+        path: 'Category',
+        children: [
+          { index: true, element: <Category /> },
+          { path: 'Upadate/:id', element: <Upadate /> },
+          // { path: 'DeleteCat/:id', element: <DeleteCategoryButton /> },
+        ],
+      },
     ],
   },
 ]);
